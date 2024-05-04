@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Emojis</title>
+</head>
+<body>
+    <button id="getEmojisButton">Get Emojis</button>
+    <div id="emojisContainer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        const getEmojisButton = document.getElementById('getEmojisButton');
+        const emojisContainer = document.getElementById('emojisContainer');
+
+        getEmojisButton.addEventListener('click', async () => {
+            try {
+                const response = await axios.get('https://ydefy.github.io/EmojiApi/random_emojis');
+                const emojis = response.data;
+                emojisContainer.innerHTML = JSON.stringify(emojis, null, 2);
+            } catch (error) {
+                console.error('Error fetching emojis:', error);
+            }
+        });
+    </script>
+</body>
+</html>
